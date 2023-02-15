@@ -142,7 +142,7 @@ section {
 }
 
 .success-msg {
-    border-color: var(--green-color);
+    border-color: $green_color;
     --background-color: rgb(87 251 160 / 10%);
     color: $white_color;
 }
@@ -188,7 +188,7 @@ textarea[name="user_payment_description"] {
     }
 
     &.badge-plus {
-        border-color: var(--green-color);
+        border-color: $green_color;
         --background-color: rgb(87 251 160 / 8%);
     }
 
@@ -232,447 +232,6 @@ img {
 }
 
 /*==========Common CSS End==========*/
-
-/*==========Data Table Sec CSS==========*/
-
-.faulh-wrapper {
-    background: var(--body-color);
-}
-
-table.dataTable th.dt-left,
-table.dataTable td.dt-left {
-    text-align: left;
-}
-
-table.dataTable th.dt-center,
-table.dataTable td.dt-center,
-table.dataTable td.dataTables_empty {
-    text-align: center;
-}
-
-table.dataTable th.dt-right,
-table.dataTable td.dt-right {
-    text-align: right;
-}
-
-table.dataTable th.dt-justify,
-table.dataTable td.dt-justify {
-    text-align: justify;
-}
-
-table.dataTable th.dt-nowrap,
-table.dataTable td.dt-nowrap {
-    white-space: nowrap;
-}
-
-table.dataTable thead th.dt-head-left,
-table.dataTable thead td.dt-head-left,
-table.dataTable tfoot th.dt-head-left,
-table.dataTable tfoot td.dt-head-left {
-    text-align: left;
-}
-
-table.dataTable thead th.dt-head-center,
-table.dataTable thead td.dt-head-center,
-table.dataTable tfoot th.dt-head-center,
-table.dataTable tfoot td.dt-head-center {
-    text-align: center;
-}
-
-table.dataTable thead th.dt-head-right,
-table.dataTable thead td.dt-head-right,
-table.dataTable tfoot th.dt-head-right,
-table.dataTable tfoot td.dt-head-right {
-    text-align: right;
-}
-
-table.dataTable thead th.dt-head-justify,
-table.dataTable thead td.dt-head-justify,
-table.dataTable tfoot th.dt-head-justify,
-table.dataTable tfoot td.dt-head-justify {
-    text-align: justify;
-}
-
-table.dataTable thead th.dt-head-nowrap,
-table.dataTable thead td.dt-head-nowrap,
-table.dataTable tfoot th.dt-head-nowrap,
-table.dataTable tfoot td.dt-head-nowrap {
-    white-space: nowrap;
-}
-
-table.dataTable tbody th.dt-body-left,
-table.dataTable tbody td.dt-body-left {
-    text-align: left;
-}
-
-table.dataTable tbody th.dt-body-center,
-table.dataTable tbody td.dt-body-center {
-    text-align: center;
-}
-
-table.dataTable tbody th.dt-body-right,
-table.dataTable tbody td.dt-body-right {
-    text-align: right;
-}
-
-table.dataTable tbody th.dt-body-justify,
-table.dataTable tbody td.dt-body-justify {
-    text-align: justify;
-}
-
-table.dataTable tbody th.dt-body-nowrap,
-table.dataTable tbody td.dt-body-nowrap {
-    white-space: nowrap;
-}
-
-table.dataTable td.dt-control {
-    text-align: center;
-    cursor: pointer;
-}
-
-table.dataTable td.dt-control:before {
-    height: 1em;
-    width: 1em;
-    margin-top: -9px;
-    display: inline-block;
-    color: var(--white-color);
-    border: 0.15em solid var(--white-color);
-    border-radius: 1em;
-    box-shadow: 0 0 0.2em #444;
-    box-sizing: content-box;
-    text-align: center;
-    text-indent: 0 !important;
-    font-family: "Courier New", Courier, monospace;
-    line-height: 1em;
-    content: "+";
-    background-color: var(--green-color);
-}
-
-table.dataTable tr.dt-hasChild td.dt-control:before {
-    content: "-";
-    background-color: $red_color;
-}
-
-table.dataTable {
-    clear: both;
-    margin-top: 6px !important;
-    margin-bottom: 6px !important;
-    max-width: none !important;
-    border-collapse: separate !important;
-    border-spacing: 0;
-}
-
-table.dataTable td,
-table.dataTable th {
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-.dataTables_wrapper #withdrawal_data_length {
-    margin-bottom: 40px;
-}
-
-#withdrawal_data_wrapper .dataTables_paginate {
-    padding-top: 14px;
-}
-
-table thead th a,
-table thead td a {
-    color: var(--white-color);
-    pointer-events: none;
-}
-
-table.dataTable td.dataTables_empty,
-table.dataTable th.dataTables_empty {
-    text-align: center;
-}
-
-table.dataTable.nowrap th,
-table.dataTable.nowrap td {
-    white-space: nowrap;
-}
-
-div.dataTables_wrapper div.dataTables_length label {
-    color: var(--white-color);
-    margin: 0;
-    text-transform: capitalize;
-    position: relative;
-}
-
-div.dataTables_wrapper div.dataTables_length select {
-    width: 60px;
-    display: inline-block;
-    margin: 0 5px;
-    -webkit-appearance: auto;
-    -moz-appearance: auto;
-    padding: 0 0px 0 9px;
-    height: 34px;
-}
-
-div.dataTables_wrapper div.dataTables_filter {
-    text-align: left;
-    float: none;
-    width: 100%;
-}
-
-div.dataTables_wrapper div.dataTables_filter label {
-    font-weight: normal;
-    white-space: nowrap;
-    text-align: left;
-    color: var(--white-color);
-    position: relative;
-    display: block;
-    margin: 0;
-}
-
-div.dataTables_wrapper div.dataTables_filter input {
-    margin-left: 0.5em;
-    display: inline-block;
-    width: auto;
-}
-
-div.dataTables_wrapper div.dataTables_info {
-    padding-top: 0.85em;
-    color: #fff;
-}
-
-div.dataTables_wrapper div.dataTables_paginate {
-    margin: 0;
-    /* white-space: nowrap; */
-    text-align: right;
-}
-
-div.dataTables_wrapper div.dataTables_paginate ul.pagination {
-    margin: 2px 0;
-    white-space: nowrap;
-    justify-content: flex-end;
-}
-
-.common_page_loader {
-    --size: calc(100% + 20px);
-    --position: -10px;
-    position: absolute;
-    top: var(--position);
-    left: var(--position);
-    width: var(--size);
-    height: var(--size);
-    text-align: center;
-    padding: 15px;
-    margin: 0;
-    z-index: 9;
-    background: rgba(225, 225, 225, 10%);
-    color: var(--white-color);
-    border: 2px solid $border_color;
-    border-radius: var(--border-radius);
-    backdrop-filter: blur(10px);
-    overflow: hidden;
-    display: none;
-}
-
-.common_page_loader {
-    --size: 100%;
-    --position: 0;
-    border-radius: 0;
-}
-
-.common_page_loader i {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    font-size: 40px;
-}
-
-.table_attachment_row {
-    position: relative;
-    width: 50px;
-    text-align: center;
-}
-
-table.table-bordered.dataTable th.finance-balance-more-info.sorting_disabled {
-    width: 50px !important;
-}
-
-.table_attachment_hover {
-    position: absolute;
-    top: 0;
-    right: 100%;
-    display: flex;
-    gap: 15px;
-    padding-right: 15px;
-    transform: translateX(50px);
-    transition: 0.3s;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.table_attachment_row > .sec-btn:hover ~ .table_attachment_hover,
-.table_attachment_hover:hover {
-    transform: translateX(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-.table_filter_topbar {
-    margin-bottom: 30px;
-}
-
-div.dataTables_wrapper div.dataTables_filter input.form_input {
-    margin: 0;
-    max-width: 340px;
-    padding-left: 40px;
-}
-
-div.dataTables_wrapper div.dataTables_filter label:after {
-    content: "\f002";
-    font-family: "Font Awesome 5 Pro";
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translate(0, -50%);
-    opacity: 0.8;
-}
-
-.table_custom_filter {
-    text-align: right;
-}
-
-.table_custom_filter .modal_tablist {
-    display: inline-block;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    border: 1px solid $border_color !important;
-    color: var(--white-color) !important;
-    margin: 0 3px;
-    border-radius: var(--border-radius);
-    display: inline-flex;
-    padding: 0 10px;
-    min-width: 40px;
-    justify-content: center;
-    min-height: 32px;
-    align-items: center;
-    transition: 0.3s;
-    box-shadow: none !important;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.current,
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: var(--primary-color-500);
-    color: var(--white-color) !important;
-}
-
-.paginate_button.next {
-    margin-right: 0 !important;
-}
-
-.paginate_button.previous {
-    margin-left: 0 !important;
-}
-
-.table_filter_bottombar {
-    margin-top: 30px;
-}
-
-.table_btn_group {
-    ul {
-        display: flex;
-
-        li {
-            margin: 0 6px;
-
-            &:last-child {
-                margin-right: 0;
-            }
-
-            &:first-child {
-                margin-left: 0;
-            }
-        }
-    }
-}
-
-.table tbody tr.finance_status_surcharge td {
-    color: #c71585;
-}
-
-.table tbody tr.finance_status_discount td {
-    color: #007700;
-}
-
-.table tbody tr.finance_status_payout td {
-    color: #ff6347;
-}
-
-.table tbody tr.finance_status_collect td {
-    color: #32cd32;
-}
-
-.player-bet-won td,
-.bet-won {
-    color: #32cd32;
-}
-
-.player-bet-loss td,
-td.player-bet-loss,
-.bet-loss {
-    color: #ff3333;
-}
-
-td.player-bet-won {
-    color: #32cd32;
-}
-
-.table tbody tr.finance_status_add_credit td,
-.table tbody tr.finance_status_remove_credit td {
-    color: #d79494;
-}
-
-div.dataTables_wrapper .finance-operations-top-bar {
-    display: flex;
-    gap: 15px;
-    max-width: 600px;
-}
-
-div.dataTables_wrapper .finance-operations-top-bar div.dataTables_filter#finance_operations_filter {
-    flex: 1;
-}
-
-div.dataTables_wrapper .finance-operations-top-bar div.dataTables_filter#finance_operations_filter input {
-    max-width: 100%;
-}
-
-div.dataTables_wrapper.finance-operations-top-bar .table_submit_button {
-    max-width: 100%;
-}
-
-td.player-data-last-update {
-    color: $red_color;
-}
-
-#casino_report .bet-events-div {
-    margin-top: 10px;
-    --gap: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(calc(50% - var(--gap)), 1fr));
-    gap: var(--gap);
-}
-
-table.dataTable > tbody > tr.child ul.dtr-details {
-    width: 100%;
-}
-
-table.dataTable > tbody > tr.child ul.dtr-details li span.dtr-title {
-    min-width: 140px;
-}
-
-table.dataTable > tbody > tr.child ul.dtr-details > li {
-    border-color: $border_color;
-}
-
-/*==========Data Table Sec CSS End==========*/
 
 /*==========Form CSS==========*/
 
@@ -941,7 +500,7 @@ input#received:checked::before {
 .form_chocbox-header > span {
     margin-right: 20px;
     font-size: 16px;
-    color: var(--green-color);
+    color: $green_color;
     font-weight: 500;
     text-transform: none;
 }
@@ -1012,7 +571,7 @@ input#received:checked::before {
 .form_input[readonly] {
     background: $border_color;
     border: 2px solid $border_color;
-    color: var(--white-color);
+    color: $white_color;
     font-size: 15px;
     box-shadow: none !important;
     padding: 6px 12px;
@@ -1408,7 +967,7 @@ button.close {
     text-shadow: none;
     border-radius: var(--border-radius);
     z-index: 2;
-    color: var(--white-color);
+    color: $white_color;
     transition: 0.3s;
     outline: none;
     font-weight: normal;
@@ -1752,7 +1311,7 @@ button.close:hover {
 
 a.trp-ls-shortcode-disabled-language,
 .language-switcher-active .trp-ls-shortcode-language a {
-    color: var(--white-color) !important;
+    color: $white_color !important;
     display: flex;
     width: 100%;
     align-items: center;
@@ -1793,7 +1352,7 @@ a.trp-ls-shortcode-disabled-language:after {
 }
 
 .language-switcher-active .trp-ls-shortcode-language a {
-    color: var(--white-color);
+    color: $white_color;
 }
 
 .language-switcher-active .trp-ls-shortcode-language:last-of-type {
@@ -1849,6 +1408,300 @@ a.trp-ls-shortcode-disabled-language:after {
 }
 
 /*==========Popup CSS End==========*/
+
+/*==========Data Table Sec CSS==========*/
+
+.dataTable {
+    border: 1px solid $border_color;
+    border-radius: $border_radius;
+    width: 100% !important;
+}
+
+.rdt_Table {
+    .rdt_TableHead {
+        .rdt_TableHeadRow {
+            border: none;
+
+            .rdt_TableCol {
+                white-space: nowrap;
+                padding: 14px 10px;
+                border: 1px solid $border_color;
+                color: $white_color;
+
+                .rdt_TableCol_Sortable {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .rdt_TableBody {
+        .rdt_TableRow {
+            border: none;
+
+            .rdt_TableCell {
+                white-space: nowrap;
+                padding: 14px 10px;
+                border: 1px solid $border_color;
+                color: $white_color;
+            }
+        }
+    }
+
+    * {
+        font-size: 16px;
+    }
+}
+
+.dataTables_wrapper {
+    #withdrawal_data_length {
+        margin-bottom: 40px;
+    }
+
+    .dataTables_length {
+        label {
+            color: $white_color;
+            margin: 0;
+            text-transform: capitalize;
+            position: relative;
+        }
+
+        select {
+            width: 60px;
+            display: inline-block;
+            margin: 0 5px;
+            -webkit-appearance: auto;
+            -moz-appearance: auto;
+            padding: 0 0px 0 9px;
+            height: 34px;
+        }
+    }
+
+    .dataTables_filter {
+        text-align: left;
+        float: none;
+        width: 100%;
+
+        label {
+            font-weight: normal;
+            white-space: nowrap;
+            text-align: left;
+            color: $white_color;
+            position: relative;
+            display: block;
+            margin: 0;
+
+            &:after {
+                content: "\f002";
+                font-family: "Font Awesome 5 Pro";
+                position: absolute;
+                left: 14px;
+                top: 50%;
+                transform: translate(0, -50%);
+                opacity: 0.8;
+            }
+        }
+
+        input {
+            margin-left: 0.5em;
+            display: inline-block;
+            width: auto;
+        }
+
+        input.form_input {
+            margin: 0;
+            max-width: 340px;
+            padding-left: 40px;
+        }
+    }
+
+    .dataTables_info {
+        padding-top: 0.85em;
+        color: #fff;
+    }
+
+    .dataTables_paginate {
+        margin: 0;
+        /* white-space: nowrap; */
+        text-align: right;
+
+        .pagination {
+            margin: 2px 0;
+            white-space: nowrap;
+            justify-content: flex-end;
+        }
+
+        .paginate_button {
+            border: 1px solid $border_color !important;
+            color: $white_color !important;
+            margin: 0 3px;
+            border-radius: var(--border-radius);
+            display: inline-flex;
+            padding: 0 10px;
+            min-width: 40px;
+            justify-content: center;
+            min-height: 32px;
+            align-items: center;
+            transition: 0.3s;
+            box-shadow: none !important;
+
+            &.current,
+            &.current:hover,
+            &:hover {
+                background: var(--primary-color-500);
+                color: $white_color !important;
+            }
+        }
+
+        .paginate_button.next {
+            margin-right: 0 !important;
+        }
+
+        .paginate_button.previous {
+            margin-left: 0 !important;
+        }
+    }
+    .finance-operations-top-bar {
+        display: flex;
+        gap: 15px;
+        max-width: 600px;
+
+        .dataTables_filter#finance_operations_filter {
+            flex: 1;
+
+            input {
+                max-width: 100%;
+            }
+        }
+
+        .table_submit_button {
+            max-width: 100%;
+        }
+    }
+}
+
+#withdrawal_data_wrapper .dataTables_paginate {
+    padding-top: 14px;
+}
+
+.common_page_loader {
+    --size: 100%;
+    --position: 0;
+    position: absolute;
+    top: var(--position);
+    left: var(--position);
+    width: var(--size);
+    height: var(--size);
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+    z-index: 9;
+    background: rgba(225, 225, 225, 10%);
+    color: $white_color;
+    border: 2px solid $border_color;
+    border-radius: 0;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    display: none;
+
+    i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 40px;
+    }
+}
+
+.table_attachment_row {
+    position: relative;
+    width: 50px;
+    text-align: center;
+}
+
+.table_attachment_hover {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    display: flex;
+    gap: 15px;
+    padding-right: 15px;
+    transform: translateX(50px);
+    transition: 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.table_attachment_row > .sec-btn:hover ~ .table_attachment_hover,
+.table_attachment_hover:hover {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.table_filter_topbar {
+    margin-bottom: 30px;
+}
+
+.table_custom_filter {
+    text-align: right;
+}
+
+.table_custom_filter .modal_tablist {
+    display: inline-block;
+}
+
+.table_filter_bottombar {
+    margin-top: 30px;
+}
+
+.table_btn_group {
+    ul {
+        display: flex;
+
+        li {
+            margin: 0 6px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.player-bet-won td,
+.bet-won {
+    color: #32cd32;
+}
+
+.player-bet-loss td,
+td.player-bet-loss,
+.bet-loss {
+    color: #ff3333;
+}
+
+.player-bet-won {
+    color: #32cd32;
+}
+
+.player-data-last-update {
+    color: $red_color;
+}
+
+#casino_report .bet-events-div {
+    margin-top: 10px;
+    --gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(50% - var(--gap)), 1fr));
+    gap: var(--gap);
+}
+
+/*==========Data Table Sec CSS End==========*/
 
 /*==========Header CSS==========*/
 
@@ -2100,7 +1953,7 @@ a.trp-ls-shortcode-disabled-language:after {
             z-index: 2;
 
             a {
-                color: var(--white-color);
+                color: $white_color;
                 width: 100%;
                 min-height: 48px;
                 padding: 10px 15px;
@@ -2266,7 +2119,7 @@ a.trp-ls-shortcode-disabled-language:after {
             margin-bottom: 0.5rem;
         }
         span {
-            color: var(--white-color);
+            color: $white_color;
             opacity: 0.7;
         }
     }
@@ -2285,7 +2138,7 @@ a.trp-ls-shortcode-disabled-language:after {
 /*==========user page CSS==========*/
 
 .user_map li a {
-    color: var(--white-color);
+    color: $white_color;
     position: relative;
     display: inline-block;
     --opacity: 0.6;
@@ -2334,7 +2187,7 @@ a.trp-ls-shortcode-disabled-language:after {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background: var(--white-color);
+    background: $white_color;
     border-radius: 4px;
     cursor: pointer;
 }
