@@ -13,6 +13,8 @@ import {
 } from "chart.js";
 import { Pie, Line } from "react-chartjs-2";
 import AdminLayout from "@/components/admin/AdminLayout";
+import AdminModal from "@/components/admin/AdminModal";
+import { useState } from "react";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
@@ -55,6 +57,22 @@ const options = {
 };
 
 const Dashboard = () => {
+    const [addPlayerModal, setAddPlayerModal] = useState(false);
+    const [addAgentModal, setAddAgentModal] = useState(false);
+    const [ReferralModal, setReferralModal] = useState(false);
+
+    const playerModal = () => {
+        setAddPlayerModal(true);
+    };
+
+    const agentModal = () => {
+        setAddAgentModal(true);
+    };
+
+    const ReferralModalClick = () => {
+        setReferralModal(true);
+    };
+
     return (
         <>
             <AdminLayout>
@@ -74,21 +92,27 @@ const Dashboard = () => {
                             <div className="dashboard_box">
                                 <h3 className="h3-title">Fast Charge</h3>
                                 <div className="button_group">
-                                    <a href="#" className="sec_btn sm_btn modal-html-btn" title="New Player">
+                                    <button
+                                        type="button"
+                                        onClick={playerModal}
+                                        className="sec_btn sm_btn modal-html-btn">
                                         New Player <i className="far fa-plus-circle"></i>
-                                    </a>
+                                    </button>
 
-                                    <a href="#" className="sec_btn sm_btn modal-html-btn" title="New Agent">
+                                    <button
+                                        type="button"
+                                        onClick={agentModal}
+                                        className="sec_btn sm_btn modal-html-btn">
                                         New Agent <i className="far fa-plus-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                                 <div className="button_group">
-                                    <a
-                                        href="#"
-                                        className="sec_btn sm_btn modal-html-btn"
-                                        title="Get Referral Link">
+                                    <button
+                                        type="button"
+                                        onClick={ReferralModalClick}
+                                        className="sec_btn sm_btn modal-html-btn">
                                         Get Referral Link <i className="far fa-plus-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
 
                                 <div className="referral-link-response"></div>
@@ -184,6 +208,409 @@ const Dashboard = () => {
                     </Row>
                 </section>
             </AdminLayout>
+
+            <AdminModal show={addPlayerModal} setShow={setAddPlayerModal} size="lg">
+                <h3 className="h3-title modal_title">Add player</h3>
+                <div className="modal_tablist">
+                    <ul>
+                        <li data-tab="entry" className="active_modal_tab">
+                            Entry
+                        </li>
+                        <li data-tab="personal-information" className="">
+                            Personal information
+                        </li>
+                        <li data-tab="permission" className="">
+                            Permission
+                        </li>
+                    </ul>
+                </div>
+
+                <form className="vr_add_user_from">
+                    <div className="modal-from-section entry-sec">
+                        <div className="modal_form">
+                            <div className="form_input_wp">
+                                <i className="fal fa-user"></i>
+                                <input
+                                    name="username"
+                                    type="text"
+                                    className="form_input"
+                                    autoComplete="off"
+                                    placeholder="UserName"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-eye"></i>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    className="form_input"
+                                    autoComplete="off"
+                                    placeholder="Password"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-from-section personal-information-sec">
+                        <div className="modal_form">
+                            <div className="form_input_wp">
+                                <i className="fal fa-user"></i>
+                                <input
+                                    name="fullname"
+                                    type="text"
+                                    className="form_input"
+                                    placeholder="Fullname"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-id-card"></i>
+                                <input
+                                    name="document"
+                                    type="text"
+                                    className="form_input"
+                                    placeholder="Document"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-envelope"></i>
+                                <input
+                                    name="user_email"
+                                    type="email"
+                                    className="form_input"
+                                    placeholder="E-mail"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-phone-alt"></i>
+                                <input name="phone" type="text" className="form_input" placeholder="phone" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-from-section permission-sec">
+                        <div className="form_checkbox-sec-wp">
+                            <div className="form_checkbox-sec">
+                                <div className="form_checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="permission[]"
+                                        value="sports"
+                                        className="vr_ck_everyone"
+                                    />
+                                    <div className="form_checkbox-header">
+                                        <span>Sports</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form_checkbox-sec">
+                                <div className="form_checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="permission[]"
+                                        value="casino"
+                                        className="vr_ck_everyone"
+                                    />
+                                    <div className="form_checkbox-header">
+                                        <span>Casino</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form_checkbox-sec">
+                                <div className="form_checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="permission[]"
+                                        value="poker"
+                                        className="vr_ck_everyone"
+                                    />
+                                    <div className="form_checkbox-header">
+                                        <span>Poker</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal_footer">
+                        <button type="submit" className="sec_btn">
+                            Submit
+                        </button>
+                        <span className="load-more">
+                            <i className="fad fa-spinner-third  fa-spin ajax-loader"></i>
+                        </span>
+                    </div>
+                    <p className="error-msg vr-uname-err">Please enter valid username.</p>
+                    <p className="error-msg vr-pwd-err">Please enter valid password.</p>
+                    <p className="error-msg vr-email-err">Please enter valid email.</p>
+                    <p className="error-msg vr-permission-err">Please add user game permission.</p>
+                    <p className="success-msg">your account has been created successfully.</p>
+                </form>
+            </AdminModal>
+
+            <AdminModal show={addAgentModal} setShow={setAddAgentModal} size="lg">
+                <h3 className="h3-title modal_title">Add player</h3>
+                <div className="modal_tablist">
+                    <ul>
+                        <li data-tab="entry" className="active_modal_tab">
+                            Entry
+                        </li>
+                        <li data-tab="personal-information">Personal information </li>
+                        <li data-tab="permission">Permission </li>
+                        <li data-tab="commissions">Commissions </li>
+                    </ul>
+                </div>
+
+                <form className="vr_add_user_from">
+                    <div className="modal-from-section entry-sec">
+                        <div className="modal_form">
+                            <div className="form_input_wp">
+                                <i className="fal fa-user"></i>
+                                <input
+                                    name="username"
+                                    type="text"
+                                    className="form_input"
+                                    placeholder="UserName"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-eye"></i>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    className="form_input"
+                                    placeholder="Password"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-from-section personal-information-sec">
+                        <div className="modal_form">
+                            <div className="form_input_wp">
+                                <i className="fal fa-user"></i>
+                                <input
+                                    name="fullname"
+                                    type="text"
+                                    className="form_input"
+                                    placeholder="Fullname"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-id-card"></i>
+                                <input
+                                    name="document"
+                                    type="text"
+                                    className="form_input"
+                                    placeholder="Document"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-envelope"></i>
+                                <input
+                                    name="user_email"
+                                    type="email"
+                                    className="form_input"
+                                    placeholder="E-mail"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-phone-alt"></i>
+                                <input name="phone" type="text" className="form_input" placeholder="phone" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-from-section permission-sec">
+                        <div className="form_checkbox-sec-wp">
+                            <div className="form_checkbox-sec">
+                                <div className="form_checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="permission[]"
+                                        value="sports"
+                                        className="vr_ck_everyone agent_game_permission"
+                                    />
+                                    <div className="form_checkbox-header">
+                                        <span>Sports</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form_checkbox-sec">
+                                <div className="form_checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="permission[]"
+                                        value="casino"
+                                        className="vr_ck_everyone agent_game_permission"
+                                    />
+                                    <div className="form_checkbox-header">
+                                        <span>Casino</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="form_checkbox-sec">
+                                <div className="form_checkbox">
+                                    <input
+                                        type="checkbox"
+                                        name="permission[]"
+                                        value="poker"
+                                        className="vr_ck_everyone agent_game_permission"
+                                    />
+                                    <div className="form_checkbox-header">
+                                        <span>Poker</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal-from-section commissions-sec">
+                        <div className="commissions_modal_form">
+                            <div className="commission-type-div">
+                                <label htmlFor="settlement_type_select">Settle Automatically</label>
+                                <div className="form-element text-center">
+                                    <select
+                                        name="settlement_type"
+                                        id="settlement_type_select"
+                                        className="form_input">
+                                        <option>Select Settlement Type</option>
+                                        <option value="month">Monthly</option>
+                                        <option value="week">Weekly</option>
+                                    </select>
+                                    <i className="far fa-angle-down"></i>
+                                </div>
+                            </div>
+                            <div className="form_checkbox-sec-wp">
+                                <div className="form_checkbox-sec form_input-sec">
+                                    <div className="form_input-sec_list all-commission-main-box">
+                                        <div className="form_checkbox-header">
+                                            <span>Sports</span>
+                                            <div className="form-element">
+                                                <input
+                                                    type="number"
+                                                    name="commission[sports]"
+                                                    className="form_input"
+                                                    step=".01"
+                                                    placeholder=""
+                                                />
+                                                <i className="far fa-percent"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form_input-sec_list all-commission-main-box">
+                                        <div className="form_checkbox-header">
+                                            <span>Casino</span>
+                                            <div className="form-element">
+                                                <input
+                                                    type="number"
+                                                    name="commission[casino]"
+                                                    className="form_input"
+                                                    step=".01"
+                                                    placeholder=""
+                                                />
+                                                <i className="far fa-percent"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="form_input-sec_list all-commission-main-box">
+                                        <div className="form_checkbox-header">
+                                            <span>Poker</span>
+                                            <div className="form-element">
+                                                <input
+                                                    type="number"
+                                                    name="commission[poker]"
+                                                    className="form_input"
+                                                    step=".01"
+                                                    placeholder=""
+                                                />
+                                                <i className="far fa-percent"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="modal_footer">
+                        <button type="submit" className="sec_btn">
+                            Submit
+                        </button>
+
+                        <span className="load-more">
+                            <i className="fad fa-spinner-third  fa-spin ajax-loader"></i>
+                        </span>
+                    </div>
+                    <p className="error-msg vr-uname-err">Please enter valid username.</p>
+                    <p className="error-msg vr-pwd-err">Please enter valid password.</p>
+                    <p className="error-msg vr-email-err">Please enter valid email.</p>
+                    <p className="error-msg vr-commission-settlement-type-err">
+                        Please select settlement type.
+                    </p>
+                    <p className="error-msg vr-permission-err">Please add user game permission.</p>
+                    <p className="success-msg">your account has been created successfully.</p>
+                </form>
+            </AdminModal>
+
+            <AdminModal show={ReferralModal} setShow={setReferralModal} size="lg">
+                <h3 className="h3-title modal_title">Create Referral Link</h3>
+
+                <form className="create_referral_link" id="create_referral_link">
+                    <div className="modal-from-section entry-sec">
+                        <div className="modal_form">
+                            <div className="form_input_wp">
+                                <i className="fal fa-percent"></i>
+                                <input
+                                    name="referral_commission"
+                                    type="number"
+                                    className="form_input"
+                                    id="referral_commission"
+                                    autocomplete="off"
+                                    step=".01"
+                                    min="0"
+                                    max="100"
+                                    placeholder="Referral Commission"
+                                />
+                            </div>
+                            <div className="form_input_wp">
+                                <i className="fal fa-link"></i>
+                                <input
+                                    name="referral_link"
+                                    type="text"
+                                    className="form_input"
+                                    id="referral_link"
+                                    autocomplete="off"
+                                    placeholder="Referral Link"
+                                />
+                            </div>
+                            <p className="note">*Enter a Commission Less then 0%</p>
+                            <div className="form_input_wp generated-referral-link">
+                                <a target="_blank" href="" className="generated-referral-link-anchor"></a>
+
+                                <button
+                                    type="button"
+                                    className="generated-referral-link-icon-button sec-btn icon_btn balance_action"
+                                    data-button-toggle="tooltip"
+                                    title=""
+                                    data-original-title="Copy Link">
+                                    <i className="fal fa-copy generated-referral-link-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="modal_footer">
+                        <button type="submit" className="sec_btn">
+                            Submit
+                        </button>
+                        <span className="load-more">
+                            <i className="fad fa-spinner-third  fa-spin ajax-loader"></i>
+                        </span>
+                    </div>
+                    <p className="error-msg referral-max-commission-err "></p>
+                    <p className="error-msg referral-commission-err">
+                        Please enter commission between 0 to 100.
+                    </p>
+                    <p className="error-msg referral-commission-link-err">
+                        Please enter link address you want to create.
+                    </p>
+                    <p className="success-msg">your account has been created successfully.</p>
+                    <p className="response-referral-link"></p>
+                </form>
+            </AdminModal>
         </>
     );
 };

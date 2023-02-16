@@ -1,12 +1,14 @@
 // Fonts include
 import { Poppins } from "@next/font/google";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
-import { useEffect, useState } from "react";
 
 // Components
 import Header from "@/components/admin/Header";
 import SideBar from "@/components/admin/SideBar";
 import Head from "next/head";
+
+// Hooks
+import { useEffect, useState } from "react";
 
 const AdminLayout = ({ children }) => {
     const [path, setPath] = useState();

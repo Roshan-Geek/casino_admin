@@ -1,4 +1,19 @@
+import Image from "next/image";
+import { useState } from "react";
+import AdminModal from "../AdminModal";
+
 const Header = () => {
+    const [passwordModal, setPasswordModal] = useState(false);
+    const [languageModal, setLanguageModal] = useState(false);
+
+    const password = () => {
+        setPasswordModal(true);
+    };
+
+    const langModal = () => {
+        setLanguageModal(true);
+    };
+
     return (
         <>
             <div className="main_container">
@@ -54,7 +69,7 @@ const Header = () => {
                                     <li>
                                         <a
                                             href="#"
-                                            onClick={(e) => e.preventDefault()}
+                                            onClick={password}
                                             data-toggle="modal"
                                             data-target="#main_change_password">
                                             <i className="far fa-angle-right"></i> Change Password
@@ -63,7 +78,7 @@ const Header = () => {
                                     <li>
                                         <a
                                             href="#"
-                                            onClick={(e) => e.preventDefault()}
+                                            onClick={langModal}
                                             data-toggle="modal"
                                             data-target="#change-language">
                                             <i className="far fa-angle-right"></i> Change language
@@ -89,6 +104,43 @@ const Header = () => {
                     </nav>
                 </header>
             </div>
+
+            <AdminModal show={passwordModal} setShow={setPasswordModal}>
+                <h3 className="h3-title modal_title">Change Password</h3>
+                <form className="modal_form user_change_pwd_form">
+                    <div className="form_input_wp">
+                        <i className="fal fa-eye"></i>
+                        <input
+                            name="new_assword"
+                            type="password"
+                            className="form_input"
+                            placeholder="New Password"
+                        />
+                    </div>
+                    <div className="form_input_wp">
+                        <i className="fal fa-eye"></i>
+                        <input
+                            name="confirm_password"
+                            type="password"
+                            className="form_input"
+                            placeholder="confirm Password"
+                        />
+                    </div>
+                    <div className="modal_footer">
+                        <button type="submit" className="sec_btn">
+                            Submit
+                        </button>
+                        <input type="hidden" value="103" name="user_id" />
+                    </div>
+                    <p className="error-msg vr-newpwd-err">Please enter password.</p>
+                    <p className="error-msg vr-conpwd-err">Please enter confirm password.</p>
+                    <p className="success-msg pwd-success-msg">password is successfully update.</p>
+                </form>
+            </AdminModal>
+
+            <AdminModal show={languageModal} setShow={setLanguageModal}>
+                <h3 className="h3-title modal_title"> Change language</h3>
+            </AdminModal>
         </>
     );
 };

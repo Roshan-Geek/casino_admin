@@ -2,9 +2,19 @@ import { Container, Row, Col } from "react-bootstrap";
 import LongInImage from "@/assets/admin/images/slot-machine.jpg";
 import Image from "next/image";
 
+// Fonts include
+import { Poppins } from "@next/font/google";
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+
 const Login = () => {
     return (
         <>
+            <style jsx global>{`
+                :root {
+                    --body_font: ${poppins.style.fontFamily};
+                }
+            `}</style>
+
             <section className="login__page">
                 <Container fluid>
                     <Row>
