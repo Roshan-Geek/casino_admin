@@ -9,8 +9,26 @@ import "@/assets/css/fontawesome-min.css";
 // Components
 import Header from "@/components/Header";
 import SideBar from "@/components/SideBar";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
 
 const App = ({ Component, pageProps }) => {
+    const router = useRouter();
+    const [user, setUser] = useState();
+
+    useEffect(() => {
+        setUser(localStorage.getItem('user'));
+    });
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user) {
+            router.push('/');
+        } else {
+            router.push('/login');
+        }
+    }, []);
+
     return (
         <>
             <style jsx global>{`
@@ -18,8 +36,14 @@ const App = ({ Component, pageProps }) => {
                     --body_font: ${poppins.style.fontFamily};
                 }
             `}</style>
-            <Header />
-            <SideBar />
+            {user ? (
+                <>
+                    <Header />
+                    <SideBar />
+                </>
+            ) : (
+                <></>
+            )}
 
             <main className="main_container">
                 <div className="main_content_box">
