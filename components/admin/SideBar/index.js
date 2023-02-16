@@ -1,27 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/assets/images/logo.png";
+import Logo from "@/assets/admin/images/logo.png";
 
 const SideBar = () => {
     return (
         <>
             <section className="side_bar">
                 <div className="header-logo">
-                    <Link href="/">
+                    <Link href="/admin">
                         <Image src={Logo} alt="Logo" />
                     </Link>
                 </div>
                 <nav className="side_bar_nav navbar_wp">
                     <ul>
                         <li className="active-nav">
-                            <Link href="/" title="Statistics">
+                            <Link href="/admin" title="Statistics">
                                 <i className="fal fa-chart-bar"></i>
                                 <span>Statistics</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/users" title="Users">
+                            <Link href="/admin/users" title="Users">
                                 <i className="fal fa-users-cog"></i>
                                 <span>Users</span>
                             </Link>

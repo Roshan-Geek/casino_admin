@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import LongInImage from "@/assets/images/slot-machine.jpg";
+import LongInImage from "@/assets/admin/images/slot-machine.jpg";
 import Image from "next/image";
 
 const Login = () => {
