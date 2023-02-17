@@ -1,9 +1,13 @@
-import {Container, Row, Col} from "react-bootstrap";
-import LongInImage from "@/assets/images/slot-machine.jpg";
+import { Container, Row, Col } from "react-bootstrap";
+import LongInImage from "@/assets/admin/images/slot-machine.jpg";
 import Image from "next/image";
 import axios from "axios";
 import {useState} from "react";
 import {useRouter} from "next/router";
+
+// Fonts include
+import { Poppins } from "@next/font/google";
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 const Login = () => {
 
@@ -31,7 +35,7 @@ const Login = () => {
                 if (response.data.status) {
                     localStorage.setItem('user', JSON.stringify(response.data.data));
                     localStorage.setItem('currency', JSON.stringify(response.data.currency));
-                    router.push('/');
+                    router.push('/admin');
                 } else {
                     setError(response.data.error);
                 }
@@ -46,6 +50,12 @@ const Login = () => {
 
     return (
         <>
+            <style jsx global>{`
+                :root {
+                    --body_font: ${poppins.style.fontFamily};
+                }
+            `}</style>
+
             <section className="login__page">
                 <Container fluid>
                     <Row>
@@ -57,7 +67,7 @@ const Login = () => {
                                         <h1 className="h1_title">Login</h1>
                                         <p className="error-msg"></p>
                                         <div className="form_input_wp">
-                                            <i className="fal fa-user"/>
+                                            <i className="fal fa-user" />
                                             <input
                                                 name="username"
                                                 type="text"
@@ -68,7 +78,7 @@ const Login = () => {
                                             />
                                         </div>
                                         <div className="form_input_wp">
-                                            <i className="fal fa-eye"/>
+                                            <i className="fal fa-eye" />
                                             <input
                                                 name="password"
                                                 type="password"
@@ -101,7 +111,7 @@ const Login = () => {
 
                         <Col lg={7}>
                             <div className="login_form_bg back-img">
-                                <Image src={LongInImage} fill objectFit="cover" alt=""/>
+                                <Image src={LongInImage} fill objectFit="cover" alt="" />
                             </div>
                         </Col>
                     </Row>
