@@ -2,7 +2,6 @@ import {Container, Row, Col} from "react-bootstrap";
 import LongInImage from "@/assets/images/slot-machine.jpg";
 import Image from "next/image";
 import axios from "axios";
-import {API_DOMAIN} from "@/pages/constants/endpoint";
 import {useState} from "react";
 import {useRouter} from "next/router";
 
@@ -22,7 +21,7 @@ const Login = () => {
             password
         };
         setIsLoading(true);
-        await axios.post(`${API_DOMAIN}/api/login.php`, payload,{
+        await axios.post(`${process.env.NEXT_PUBLIC_URGENT_GAMES_API_DOMAIN}/api/login.php`, payload,{
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "multipart/form-data",
@@ -31,13 +30,14 @@ const Login = () => {
             .then((response) => {
                 if (response.data.status) {
                     localStorage.setItem('user', JSON.stringify(response.data.data));
+                    localStorage.setItem('currency', JSON.stringify(response.data.currency));
                     router.push('/');
                 } else {
                     setError(response.data.error);
                 }
             })
             .catch((error) => {
-                setError(error);
+                setError(error.message);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -89,7 +89,8 @@ const Login = () => {
                                             <button type="submit" name="login" className="sec_btn sm_btn">
                                                 Login
                                             </button>
-                                                <span className="load-more" style={{ display: isLoading ? 'block' : 'none' }}>
+                                                <span className="load-more"
+                                                      style={{display: isLoading ? 'block' : 'none'}}>
                                                 <i className="fad fa-spinner-third  fa-spin ajax-loader"/>
                                             </span>
                                         </div>

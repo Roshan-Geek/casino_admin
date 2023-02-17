@@ -1,6 +1,22 @@
+import {useEffect, useState} from "react";
+
 const Header = () => {
 
+    const [admin, setAdmin] = useState();
+
+    useEffect(() => {
+        const loggedInAdmin = JSON.parse(localStorage.getItem('user'));
+        if(loggedInAdmin) {
+            setAdmin(loggedInAdmin);
+        }
+    }, []);
+
+    const handleLogOut = () => {
+        localStorage.removeItem('user');
+    };
+
     return (
+
         <>
                 <div className="main_container">
                     <button className="menu-toggle for_mob">
@@ -47,9 +63,9 @@ const Header = () => {
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#" onClick={(e) => e.preventDefault()} title="apidev">
+                                    <a href="#" onClick={(e) => e.preventDefault()}>
                                         <i className="fal fa-user"></i>
-                                        <span>apidev</span>
+                                        <span>{admin?.display_name}</span>
                                     </a>
                                     <ul>
                                         <li>
@@ -80,7 +96,10 @@ const Header = () => {
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a
+                                                href="/login"
+                                                onClick={handleLogOut}
+                                            >
                                                 <i className="far fa-angle-right"></i> Logout
                                             </a>
                                         </li>

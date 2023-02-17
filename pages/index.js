@@ -12,6 +12,10 @@ import {
     LineElement,
 } from "chart.js";
 import { Pie, Line } from "react-chartjs-2";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {AGERE_GAMES_API_DOMAIN, CASINO, REMOTE_ID, TOKEN, URGENT_GAMES_API_DOMAIN} from "@/pages/constants/endpoint";
+import {getLast12Months} from "@/pages/Utils/getLast12Months";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
@@ -54,6 +58,62 @@ const options = {
 };
 
 const Home = () => {
+
+    const [netIncome, setNetIncome] = useState();
+    const [currency, setCurrency] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const con = JSON.parse(window?.localStorage?.getItem('currency'));
+        setCurrency(Number(netIncome?.currentGGR.totalCommission).toLocaleString('en-US', {style: 'currency', currency: con?.title}))
+    }, [netIncome]);
+
+    useEffect( () => {
+        const getNetIncome = async (userId) => {
+            setIsLoading(true);
+            await axios.get(`${process.env.NEXT_PUBLIC_AGERE_GAMES_API_DOMAIN}/casinos/casino-admin-reports?action=netIncome&token=${process.env.NEXT_PUBLIC_TOKEN}&casino=${process.env.NEXT_PUBLIC_CASINO}&remote_id=${process.env.NEXT_PUBLIC_REMOTE_ID}/_${userId}`)
+                .then((response) => {
+                    console.log(response);
+                    setNetIncome(response.data.commissionInfo);
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        };
+        const loggedInAdmin = (JSON.parse(localStorage.getItem('user')));
+        getNetIncome(loggedInAdmin.ID);
+    },[]);
+
+    const netIncomeChartData = {
+        labels: getLast12Months(),
+        datasets: [
+            {
+                label: "# of Votes",
+                data: [netIncome?.commissionInfo?.currentGGR?.totalCommission],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                ],
+                borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                ],
+                borderWidth: 1,
+            },
+        ],
+    };
+
     return (
         <>
             <section className="dashboard_main">
@@ -138,14 +198,20 @@ const Home = () => {
                         <div className="dashboard_box">
                             <h3 className="h3-title">Net Income</h3>
                             <div className="dashboard_list">
-                                <ul>
-                                    <li>
-                                        <label>Current month :</label> <span>-$1.5825</span>
-                                    </li>
-                                    <li>
-                                        <label>Previous month :</label> <span>$0</span>
-                                    </li>
-                                </ul>
+                                {isLoading ? (
+                                    <span className="load-more" style={{display: isLoading ? 'block' : 'none'}}>
+                                        <i className="fad fa-spinner-third  fa-spin ajax-loader"/>
+                                    </span>
+                                ) : (
+                                    <ul>
+                                        <li>
+                                            <label>Current month :</label> <span>{currency}</span>
+                                        </li>
+                                        <li>
+                                            <label>Previous month :</label> <span>{netIncome?.lastGGR.totalCommission}</span>
+                                        </li>
+                                    </ul>
+                                )}
                             </div>
                             <div className="badge_wp d-none">
                                 <span className="badge badge-minus">
@@ -161,7 +227,7 @@ const Home = () => {
                     <Col xl={4} lg={6}>
                         <div className="dashboard_box">
                             <h3 className="h3-title">Net Income</h3>
-                            <Line data={data} />
+                            <Line data={netIncomeChartData} />
                         </div>
                     </Col>
                 </Row>
