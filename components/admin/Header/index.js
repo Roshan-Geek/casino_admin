@@ -125,7 +125,7 @@ const Header = () => {
                     <div className="form_input_wp">
                         <i className="fal fa-eye"></i>
                         <input
-                            name="new_assword"
+                            name="new_password"
                             type="password"
                             className="form_input"
                             placeholder="New Password"
