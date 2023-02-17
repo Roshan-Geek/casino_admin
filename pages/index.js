@@ -14,7 +14,6 @@ import {
 import { Pie, Line } from "react-chartjs-2";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {AGERE_GAMES_API_DOMAIN, CASINO, REMOTE_ID, TOKEN, URGENT_GAMES_API_DOMAIN} from "@/pages/constants/endpoint";
 import {getLast12Months} from "@/pages/Utils/getLast12Months";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
@@ -65,7 +64,7 @@ const Home = () => {
 
     useEffect(() => {
         const con = JSON.parse(window?.localStorage?.getItem('currency'));
-        setCurrency(Number(netIncome?.currentGGR.totalCommission).toLocaleString('en-US', {style: 'currency', currency: con?.title}))
+        setCurrency(Number(netIncome?.currentGGR.totalCommission).toLocaleString('en-US', {style: 'currency', currency: con?.title}));
     }, [netIncome]);
 
     useEffect( () => {
