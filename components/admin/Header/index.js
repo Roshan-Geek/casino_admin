@@ -1,10 +1,16 @@
-import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import sha1 from "sha1";
+import axios from "axios";
 import AdminModal from "../AdminModal";
+import ChangePassword from "../Modals/ChangePassword";
 
 const Header = () => {
     const [passwordModal, setPasswordModal] = useState(false);
     const [languageModal, setLanguageModal] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [totalBalance, setTotalBalance] = useState();
+    const [admin, setAdmin] = useState();
 
     const password = () => {
         setPasswordModal(true);
@@ -13,20 +19,54 @@ const Header = () => {
     const langModal = () => {
         setLanguageModal(true);
     };
-
-
-    const [admin, setAdmin] = useState();
+    const handleLogOut = () => {
+        localStorage.removeItem("Admin");
+    };
 
     useEffect(() => {
-        const loggedInAdmin = JSON.parse(localStorage.getItem('user'));
-        if(loggedInAdmin) {
+        const loggedInAdmin = JSON.parse(localStorage.getItem("Admin"));
+        if (loggedInAdmin) {
             setAdmin(loggedInAdmin);
         }
     }, []);
 
-    const handleLogOut = () => {
-        localStorage.removeItem('user');
-    };
+    useEffect(() => {
+        setLoading(true);
+        const getUserId = JSON.parse(localStorage.getItem("Admin"));
+        const currancy = JSON.parse(localStorage.getItem("currency"));
+
+        const authKey = sha1(
+            process.env.NEXT_PUBLIC_AUTH_KEY +
+                `action=balance&remote_id=https://demo.urgentgames.com/_${getUserId.ID}&token=${process.env.NEXT_PUBLIC_TOKEN}&currency=${currancy.title}&casino=${process.env.NEXT_PUBLIC_CASINO}`
+        );
+        try {
+            const getTotalBlance = async () => {
+                await axios
+                    .get(
+                        `https://api.agere.games/casinos-admin/api?action=balance&remote_id=https://demo.urgentgames.com/_${getUserId.ID}&token=${process.env.NEXT_PUBLIC_TOKEN}&currency=${currancy.title}&casino=${process.env.NEXT_PUBLIC_CASINO}&authKey=${authKey}`
+                    )
+                    .then((response) => {
+                        setTotalBalance(
+                            Number(response?.data.balance).toLocaleString("en-US", {
+                                style: "currency",
+                                currency: currancy.title,
+                            })
+                        );
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.log(error?.message);
+                        setLoading(true);
+                    })
+                    .finally(() => {
+                        setLoading(false);
+                    });
+            };
+            getTotalBlance();
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
 
     return (
         <>
@@ -41,76 +81,83 @@ const Header = () => {
                     <nav className="navbar_wp">
                         <ul>
                             <li>
-                                <a
+                                <Link
                                     href="#"
                                     onClick={(e) => e.preventDefault()}
                                     title="Price"
                                     className="cursor_not_allow">
                                     <i className="fal fa-coins"></i>
                                     <span>
-                                        <span className="woocommerce-Price-currencySymbol symbol-only">
-                                            $
-                                        </span>
-                                        <span className="woocommerce-Price-currencySymbol woo_current_user_balance ">
-                                            897.00
-                                        </span>
+                                        {loading ? (
+                                            <span
+                                                className="load-more"
+                                                style={{ display: loading ? "block" : "none" }}>
+                                                <i className="fad fa-spinner-third  fa-spin ajax-loader" />
+                                            </span>
+                                        ) : (
+                                            <>
+                                                <span className="woocommerce-Price-currencySymbol woo_current_user_balance ">
+                                                    {totalBalance}
+                                                </span>
+                                            </>
+                                        )}
                                     </span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#" onClick={(e) => e.preventDefault()}>
+                                <Link href="#" onClick={(e) => e.preventDefault()}>
                                     <i className="fas fa-headset"></i>
-                                </a>
+                                </Link>
                                 <ul>
                                     <li>
-                                        <a
+                                        <Link
                                             href="#"
                                             onClick={(e) => e.preventDefault()}
                                             data-toggle="modal"
                                             data-target="#contact-support"
                                             className="contact-support-button">
                                             <i className="fal fa-paper-plane"></i> Contact Support
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" onClick={(e) => e.preventDefault()} title="apidev">
+                                <Link href="#" onClick={(e) => e.preventDefault()}>
                                     <i className="fal fa-user"></i>
-                                    <span>apidev</span>
-                                </a>
+                                    <span>{admin?.display_name}</span>
+                                </Link>
                                 <ul>
                                     <li>
-                                        <a
-                                            href="#"
+                                        <Link
+                                            href=""
                                             onClick={password}
                                             data-toggle="modal"
                                             data-target="#main_change_password">
                                             <i className="far fa-angle-right"></i> Change Password
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a
+                                        <Link
                                             href="#"
                                             onClick={langModal}
                                             data-toggle="modal"
                                             data-target="#change-language">
                                             <i className="far fa-angle-right"></i> Change language
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a
+                                        <Link
                                             href="#"
                                             onClick={(e) => e.preventDefault()}
                                             data-toggle="modal"
                                             data-target="#login-history">
                                             <i className="far fa-angle-right"></i> Login History
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/admin/login" onClick={handleLogOut}>
+                                        <Link href="/admin/login" onClick={handleLogOut}>
                                             <i className="far fa-angle-right"></i> Logout
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </li>
@@ -119,38 +166,7 @@ const Header = () => {
                 </header>
             </div>
 
-            <AdminModal show={passwordModal} setShow={setPasswordModal}>
-                <h3 className="h3-title modal_title">Change Password</h3>
-                <form className="modal_form user_change_pwd_form">
-                    <div className="form_input_wp">
-                        <i className="fal fa-eye"></i>
-                        <input
-                            name="new_password"
-                            type="password"
-                            className="form_input"
-                            placeholder="New Password"
-                        />
-                    </div>
-                    <div className="form_input_wp">
-                        <i className="fal fa-eye"></i>
-                        <input
-                            name="confirm_password"
-                            type="password"
-                            className="form_input"
-                            placeholder="confirm Password"
-                        />
-                    </div>
-                    <div className="modal_footer">
-                        <button type="submit" className="sec_btn">
-                            Submit
-                        </button>
-                        <input type="hidden" value="103" name="user_id" />
-                    </div>
-                    <p className="error-msg vr-newpwd-err">Please enter password.</p>
-                    <p className="error-msg vr-conpwd-err">Please enter confirm password.</p>
-                    <p className="success-msg pwd-success-msg">password is successfully update.</p>
-                </form>
-            </AdminModal>
+            <ChangePassword show={passwordModal} setShow={setPasswordModal} />
 
             <AdminModal show={languageModal} setShow={setLanguageModal}>
                 <h3 className="h3-title modal_title"> Change language</h3>

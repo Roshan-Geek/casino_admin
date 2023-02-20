@@ -5,7 +5,7 @@ export default function Document() {
     // var cssName = router.pathname === "admin" ? "../assets/css/fontawesome-min.css" : "";
 
     return (
-        <Html lang="ru">
+        <Html lang="en">
             <Head />
             <body>
                 <Main />

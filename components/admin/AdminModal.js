@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
-const AdminModal = ({ children, show, setShow, size }) => {
-    const handleClose = () => setShow(false);
+const AdminModal = ({ children, show, setShow, size, closeModal }) => {
+    // const handleClose = () => setShow(false);
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} size={size}>
-                <button type="button" className="close" onClick={handleClose}>
+            <Modal show={show} onHide={closeModal} size={size}>
+                <button type="button" className="close" onClick={closeModal}>
                     <span aria-hidden="true">×</span>
                 </button>
 
