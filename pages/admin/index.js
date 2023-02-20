@@ -76,6 +76,7 @@ const Dashboard = () => {
                 .then((response) => {
                     if (response?.data?.commissionInfo) {
                         setNetIncome(response?.data?.commissionInfo);
+                        console.log(response.data);
                     } else {
                         setIsLoading(true);
                     }
@@ -89,7 +90,7 @@ const Dashboard = () => {
                 });
         };
         const loggedInAdmin = JSON.parse(localStorage.getItem("Admin"));
-        getNetIncome(loggedInAdmin.ID);
+        // getNetIncome(loggedInAdmin.ID);
     }, []);
 
     // monthly net Income

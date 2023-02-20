@@ -35,7 +35,7 @@ const Login = () => {
             })
             .then((response) => {
                 if (response.data.status) {
-                    localStorage.setItem("user", JSON.stringify(response.data.data));
+                    localStorage.setItem("Admin", JSON.stringify(response.data.data));
                     localStorage.setItem("currency", JSON.stringify(response.data.currency));
                     router.push("/admin");
                 } else {
