@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "axios": "^1.3.3",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.2.1",
     "eslint": "8.34.0",
@@ -20,6 +21,8 @@
     "react-chartjs-2": "^5.2.0",
     "react-data-table-component": "^7.5.3",
     "react-dom": "18.2.0",
-    "sass": "^1.58.0"
+    "react-hook-form": "^7.43.1",
+    "sass": "^1.58.0",
+    "sha1": "^1.1.1"
   }
 }

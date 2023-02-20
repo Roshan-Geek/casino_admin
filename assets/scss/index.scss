@@ -1,9 +1,13 @@
 @import "~bootstrap/scss/bootstrap";
-@import "_variables.scss";
-@import "_font.scss";
-@import "_themeColors.scss";
-@import "_mixin.scss";
-@import "_space.scss";
+// @import "~bootstrap/scss/bootstrap-reboot";
+// @import "~bootstrap/scss/bootstrap-grid";
+// @import "~bootstrap/scss/bootstrap-utilities";
+// @import "~bootstrap/scss/tooltip";
+@import "_variables";
+@import "_font";
+@import "_themeColors";
+@import "_mixin";
+@import "_space";
 
 /*==========Common CSS ==========*/
 
@@ -33,10 +37,6 @@ html {
     scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar {
-    width: 0;
-}
-
 body {
     margin: 0;
     font-family: $body_font;
@@ -45,6 +45,8 @@ body {
     padding: var(--body-space);
     padding-right: 0;
     color: $white_color;
+    font-size: 16px;
+    line-height: 26px;
 }
 
 button,
@@ -289,7 +291,7 @@ select {
             }
         }
 
-        button.sec-btn {
+        button.sec_btn {
             i {
                 left: 50%;
                 top: 50%;
@@ -1055,7 +1057,9 @@ button.close:hover {
 }
 
 .modal_footer {
+    display: flex;
     text-align: center;
+    justify-content: center;
     padding-bottom: 15px;
 }
 
@@ -1085,7 +1089,7 @@ button.close:hover {
     margin: 0;
 }
 
-.add_coin_group .sec-btn i {
+.add_coin_group .sec_btn i {
     margin-right: var(--btn-icon-space);
     margin-left: 0;
 }
@@ -1104,7 +1108,7 @@ button.close:hover {
     margin-right: 0;
 }
 
-.add_coin_group ul li .sec-btn {
+.add_coin_group ul li .sec_btn {
     font-weight: 500;
 }
 
@@ -1127,14 +1131,14 @@ button.close:hover {
     flex: 1;
 }
 
-.attachment_items ul li .sec-btn,
-.attach_proof_input .sec-btn {
+.attachment_items ul li .sec_btn,
+.attach_proof_input .sec_btn {
     height: 51px;
     width: 51px;
 }
 
-.attachment_items ul li .sec-btn i,
-.attach_proof_input .sec-btn i {
+.attachment_items ul li .sec_btn i,
+.attach_proof_input .sec_btn i {
     font-size: 17px;
     margin: 0;
     position: unset;
@@ -1145,21 +1149,21 @@ button.close:hover {
     margin-bottom: 18px;
 }
 
-.attachment_items ul li .sec-btn input#attach_proof,
+.attachment_items ul li .sec_btn input#attach_proof,
 .attach_proof_input input {
     display: none;
     text-indent: -999px;
 }
 
-.attachment_items ul li .sec-btn label,
-.attach_proof_input .sec-btn label {
+.attachment_items ul li .sec_btn label,
+.attach_proof_input .sec_btn label {
     margin: 0;
     cursor: pointer;
     display: inline-flex;
 }
 
-.attachment_items ul li .sec-btn label:after,
-.attach_proof_input .sec-btn label:after {
+.attachment_items ul li .sec_btn label:after,
+.attach_proof_input .sec_btn label:after {
     content: "";
     position: absolute;
     top: 0;
@@ -1230,6 +1234,13 @@ button.close:hover {
 .user_info_list li span {
     color: var(--input-color);
     flex: 1;
+}
+
+.user_info_sort {
+    background-color: transparent;
+    border: none;
+    color: $primary_color_500;
+    outline: none;
 }
 
 .structure_list {
@@ -1396,17 +1407,17 @@ a.trp-ls-shortcode-disabled-language:after {
     margin: 0 !important;
 }
 
+.user_block_form .form_input_wp label {
+    margin-bottom: 8px;
+}
 /*==========Popup CSS End==========*/
 
 /*==========Data Table Sec CSS==========*/
 
-.dataTable {
-    border: 1px solid $border_color;
-    border-radius: $border_radius;
-    width: 100% !important;
-}
-
 .rdt_Table {
+    width: 100% !important;
+    border-radius: $border_radius;
+
     .rdt_TableHead {
         .rdt_TableHeadRow {
             border: none;
@@ -1416,6 +1427,17 @@ a.trp-ls-shortcode-disabled-language:after {
                 padding: 14px 10px;
                 border: 1px solid $border_color;
                 color: $white_color;
+                border-top-width: 2px;
+
+                &:first-child {
+                    border-radius: $border_radius 0 0 0;
+                    border-left-width: 2px;
+                }
+
+                &:last-child {
+                    border-radius: 0 $border_radius 0 0;
+                    border-right-width: 2px;
+                }
 
                 .rdt_TableCol_Sortable {
                     font-weight: bold;
@@ -1433,6 +1455,28 @@ a.trp-ls-shortcode-disabled-language:after {
                 padding: 14px 10px;
                 border: 1px solid $border_color;
                 color: $white_color;
+
+                &:first-child {
+                    border-left-width: 2px;
+                }
+
+                &:last-child {
+                    border-right-width: 2px;
+                }
+            }
+
+            &:last-of-type {
+                .rdt_TableCell {
+                    border-bottom-width: 2px;
+
+                    &:last-child {
+                        border-radius: 0 0 $border_radius 0;
+                    }
+
+                    &:first-child {
+                        border-radius: 0 0 0 $border_radius;
+                    }
+                }
             }
         }
     }
@@ -1591,7 +1635,7 @@ a.trp-ls-shortcode-disabled-language:after {
     border-radius: 0;
     backdrop-filter: blur(10px);
     overflow: hidden;
-    display: none;
+    // display: none;
 
     i {
         display: flex;
@@ -1622,7 +1666,7 @@ a.trp-ls-shortcode-disabled-language:after {
     visibility: hidden;
 }
 
-.table_attachment_row > .sec-btn:hover ~ .table_attachment_hover,
+.table_attachment_row > .sec_btn:hover ~ .table_attachment_hover,
 .table_attachment_hover:hover {
     transform: translateX(0);
     opacity: 1;
@@ -2085,6 +2129,7 @@ td.player-bet-loss,
     place-items: center;
     margin-bottom: var(--bs-gutter-x);
     height: calc(100% - var(--bs-gutter-x));
+    position: relative;
 
     .button_group {
         margin-bottom: 26px;
@@ -2168,7 +2213,7 @@ td.player-bet-loss,
 }
 
 .user_map li.user_dropdown > i {
-    margin: 0 3px;
+    margin: 0 6px;
     font-size: 16px;
     color: $primary_color;
     width: 18px;
@@ -2190,7 +2235,7 @@ td.player-bet-loss,
 }
 
 .user_map li ul ul {
-    padding-left: calc(var(--list-left-space) * 1.5);
+    padding-left: calc(var(--list-left-space) * 1.7);
 }
 
 .user_map li.user_dropdown > a {
@@ -2203,7 +2248,7 @@ td.player-bet-loss,
 }
 
 .user_map ul ul li.user_dropdown i {
-    margin-left: calc(var(--list-left-space) * 0.65);
+    margin-left: calc(var(--list-left-space) * 0.8);
     vertical-align: top;
     position: relative;
     top: 4px;
@@ -2221,6 +2266,10 @@ td.player-bet-loss,
 
 .user_main_sec_content {
     --size: 400px;
+}
+
+.user_main_sec_content .row {
+    --bs-gutter-x: 30px;
 }
 
 .user_main_sec_content > .row > .col-lg-3 {

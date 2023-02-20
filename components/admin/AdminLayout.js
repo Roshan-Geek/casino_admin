@@ -9,6 +9,7 @@ import Head from "next/head";
 
 // Hooks
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const AdminLayout = ({ children }) => {
     const [path, setPath] = useState();
@@ -19,6 +20,21 @@ const AdminLayout = ({ children }) => {
 
         setPath(cssName);
     }, []);
+
+    const router = useRouter();
+
+    const [loggedInUser, setLoggedInUser] = useState();
+
+    useEffect(() => {
+        setLoggedInUser(localStorage.getItem("Admin"));
+    }, []);
+
+    useEffect(() => {
+        const admin = JSON.parse(localStorage.getItem("Admin"));
+        if (!admin) {
+            router.push("/admin/login");
+        }
+    }, [router]);
 
     return (
         <>
@@ -32,8 +48,12 @@ const AdminLayout = ({ children }) => {
                 <link rel="stylesheets" href={path} />
             </Head>
 
-            <Header />
-            <SideBar />
+            {loggedInUser && (
+                <>
+                    <Header />
+                    <SideBar />
+                </>
+            )}
 
             <main className="main_container">
                 <div className="main_content_box">{children}</div>
