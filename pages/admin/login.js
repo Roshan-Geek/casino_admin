@@ -17,7 +17,6 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const [show, setShow] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -35,7 +34,7 @@ const Login = () => {
             })
             .then((response) => {
                 if (response.data.status) {
-                    localStorage.setItem("Admin", JSON.stringify(response.data.data));
+                    localStorage.setItem("user", JSON.stringify(response.data.data));
                     localStorage.setItem("currency", JSON.stringify(response.data.currency));
                     router.push("/admin");
                 } else {
@@ -96,11 +95,7 @@ const Login = () => {
                                             />
                                         </div>
 
-                                        {error && (
-                                            <div className="error-msg" style={{ display: error && "block" }}>
-                                                {error}
-                                            </div>
-                                        )}
+                                        {error && <div className="error-msg">{error}</div>}
 
                                         <div className="form_submit">
                                             <button type="submit" name="login" className="sec_btn sm_btn">

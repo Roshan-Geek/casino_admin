@@ -7,21 +7,21 @@ const SideBar = () => {
         <>
             <section className="side_bar">
                 <div className="header-logo">
-                    <Link href="/admin">
+                    <Link href="/">
                         <Image src={Logo} alt="Logo" />
                     </Link>
                 </div>
                 <nav className="side_bar_nav navbar_wp">
                     <ul>
                         <li className="active-nav">
-                            <Link href="/admin" title="Statistics">
+                            <Link href="/" title="Statistics">
                                 <i className="fal fa-chart-bar"></i>
                                 <span>Statistics</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/admin/users" title="Users">
+                            <Link href="/users" title="Users">
                                 <i className="fal fa-users-cog"></i>
                                 <span>Users</span>
                             </Link>
