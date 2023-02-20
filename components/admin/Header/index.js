@@ -105,9 +105,9 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <a href="#" onClick={(e) => e.preventDefault()}>
+                                <Link href="#" onClick={(e) => e.preventDefault()}>
                                     <i className="fas fa-headset"></i>
-                                </a>
+                                </Link>
                                 <ul>
                                     <li>
                                         <Link
@@ -122,10 +122,10 @@ const Header = () => {
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" onClick={(e) => e.preventDefault()}>
+                                <Link href="#" onClick={(e) => e.preventDefault()}>
                                     <i className="fal fa-user"></i>
                                     <span>{admin?.display_name}</span>
-                                </a>
+                                </Link>
                                 <ul>
                                     <li>
                                         <Link
