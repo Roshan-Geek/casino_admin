@@ -17,6 +17,7 @@ const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [show, setShow] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
