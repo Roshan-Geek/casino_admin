@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/assets/images/logo.png";
+import Logo from "@/assets/admin/images/logo.png";
 
 const SideBar = () => {
     return (
