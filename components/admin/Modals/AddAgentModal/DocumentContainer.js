@@ -1,23 +1,24 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 
-const UsernameContainer = ({ methods }) => {
+const DocumentContainer = ({ methods }) => {
     const { control } = methods;
 
     return (
         <>
-            <i className="fal fa-user"></i>
+            <i className="fal fa-id-card"></i>
             <Controller
-                name="username"
+                name="document"
                 control={control}
                 rules={{ required: true }}
                 render={({ field: { onChange, value } }) => (
                     <input
+                        name="document"
                         type="text"
-                        value={value}
                         className="form_input"
-                        placeholder="Username"
                         onChange={onChange}
+                        value={value}
+                        placeholder="Document"
                     />
                 )}
             />
@@ -25,4 +26,4 @@ const UsernameContainer = ({ methods }) => {
     );
 };
 
-export default UsernameContainer;
+export default DocumentContainer;

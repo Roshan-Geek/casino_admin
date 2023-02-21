@@ -37,6 +37,10 @@ html {
     scroll-behavior: smooth;
 }
 
+body::-webkit-scrollbar {
+    width: 0;
+}
+
 body {
     margin: 0;
     font-family: $body_font;
@@ -1057,10 +1061,18 @@ button.close:hover {
 }
 
 .modal_footer {
-    display: flex;
     text-align: center;
     justify-content: center;
     padding-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.personal_modal_footer {
+    text-align: center;
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: row;
 }
 
 .commission-type-div {
@@ -1417,7 +1429,10 @@ a.trp-ls-shortcode-disabled-language:after {
 .rdt_Table {
     width: 100% !important;
     border-radius: $border_radius;
+    width: 100% !important;
+}
 
+.rdt_Table {
     .rdt_TableHead {
         .rdt_TableHeadRow {
             border: none;

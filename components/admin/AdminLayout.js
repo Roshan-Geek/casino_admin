@@ -5,21 +5,21 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700
 // Components
 import Header from "@/components/admin/Header";
 import SideBar from "@/components/admin/SideBar";
-// import Head from "next/head";
+import Head from "next/head";
 
 // Hooks
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 const AdminLayout = ({ children }) => {
-    // const [path, setPath] = useState();
+    const [path, setPath] = useState();
 
-    // useEffect(() => {
-    //     const path = window.location.pathname;
-    //     var cssName = path === "/admin" ? "../../assets/css/fontawesome-min.css" : "";
+    useEffect(() => {
+        const path = window.location.pathname;
+        var cssName = path === "/admin" ? "../../assets/css/fontawesome-min.css" : "";
 
-    //     setPath(cssName);
-    // }, []);
+        setPath(cssName);
+    }, []);
 
     const router = useRouter();
 
@@ -30,7 +30,7 @@ const AdminLayout = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        const admin = JSON.parse(localStorage.getItem("Admin"));
+        const admin =JSON.parse(window?.localStorage?.getItem("Admin"));
         if (!admin) {
             router.push("/admin/login");
         }
@@ -44,9 +44,9 @@ const AdminLayout = ({ children }) => {
                 }
             `}</style>
 
-            {/* <Head>
+            <Head>
                 <link rel="stylesheets" href={path} />
-            </Head> */}
+            </Head>
 
             {loggedInUser && (
                 <>

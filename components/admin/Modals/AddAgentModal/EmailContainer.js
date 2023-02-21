@@ -1,23 +1,24 @@
 import React from "react";
 import { Controller } from "react-hook-form";
 
-const UsernameContainer = ({ methods }) => {
+const EmailContainer = ({ methods }) => {
     const { control } = methods;
 
     return (
         <>
-            <i className="fal fa-user"></i>
+            <i className="fal fa-envelope"></i>
             <Controller
-                name="username"
+                name="email"
                 control={control}
                 rules={{ required: true }}
                 render={({ field: { onChange, value } }) => (
                     <input
-                        type="text"
-                        value={value}
+                        name="email"
+                        type="email"
                         className="form_input"
-                        placeholder="Username"
                         onChange={onChange}
+                        value={value}
+                        placeholder="E-mail"
                     />
                 )}
             />
@@ -25,4 +26,4 @@ const UsernameContainer = ({ methods }) => {
     );
 };
 
-export default UsernameContainer;
+export default EmailContainer;

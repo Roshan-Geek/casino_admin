@@ -14,7 +14,7 @@ import {
 import { Pie, Line } from "react-chartjs-2";
 import AdminLayout from "@/components/admin/AdminLayout";
 import NextTooltip from "@/components/admin/UI/NextTooltip";
-import { useForm } from "react-hook-form";
+import AdminModal from "@/components/admin/AdminModal";
 import AddPlayer from "@/components/admin/Modals/AddPlayerModal";
 import Title from "@/components/admin/UI/Title";
 import AddAgent from "@/components/admin/Modals/AddAgentModal";
@@ -22,6 +22,7 @@ import ReferralModal from "@/components/admin/Modals/ReferralModal";
 import IncreaseModal from "@/components/admin/Modals/IncreaseModal";
 import DecreaseModal from "@/components/admin/Modals/DecreaseModal";
 import Loader from "@/components/admin/UI/Loader";
+import { useForm } from "react-hook-form";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
@@ -88,8 +89,8 @@ const Dashboard = () => {
                     setIsLoading(false);
                 });
         };
-        const loggedInAdmin = JSON.parse(localStorage.getItem("Admin"));
-        getNetIncome(loggedInAdmin.ID);
+        const loggedInAdmin = JSON.parse(window?.localStorage?.getItem("Admin"));
+        getNetIncome(loggedInAdmin?.ID);
     }, []);
 
     // monthly net Income
@@ -120,7 +121,7 @@ const Dashboard = () => {
                     setIsLoading(false);
                 });
         };
-        const loggedInAdmin = JSON.parse(localStorage.getItem("Admin"));
+        const loggedInAdmin = JSON.parse(window?.localStorage?.getItem("Admin"));
         getMonthlyNetIncome(loggedInAdmin?.ID);
     }, []);
 
@@ -157,8 +158,8 @@ const Dashboard = () => {
                     setIsLoading(false);
                 });
         };
-        const loggedInAdmin = JSON.parse(localStorage.getItem("Admin"));
-        getDailyNetWin(loggedInAdmin.ID);
+        const loggedInAdmin = JSON.parse(window?.localStorage?.getItem("Admin"));
+        getDailyNetWin(loggedInAdmin?.ID);
     }, []);
 
     // monthly netwinIncome
@@ -332,11 +333,11 @@ const Dashboard = () => {
                                     ) : (
                                         <ul>
                                             <li>
-                                                <label>Current month :</label>
+                                                <label>Current month :</label>{" "}
                                                 <span>{currency ? currency : "00"}</span>
                                             </li>
                                             <li>
-                                                <label>Previous month :</label>
+                                                <label>Previous month :</label>{" "}
                                                 <span>{netIncome?.lastGGR?.totalCommission}</span>
                                             </li>
                                         </ul>
@@ -378,15 +379,15 @@ const Dashboard = () => {
                 </section>
             </AdminLayout>
 
-            <AddPlayer methods={methods} show={showPlayerModal} setShow={setShowPlayerModal} />
+            <AddPlayer show={showPlayerModal} setShow={setShowPlayerModal} />
 
-            <AddAgent methods={methods} show={addAgentModal} setShow={setAddAgentModal} />
+            <AddAgent show={addAgentModal} setShow={setAddAgentModal} />
 
-            <ReferralModal method={methods} show={referralModal} setShow={setReferralModal} />
+            <ReferralModal show={referralModal} setShow={setReferralModal} />
 
-            <IncreaseModal method={methods} show={increaseModal} setShow={setShowIncreaseModal} />
+            <IncreaseModal show={increaseModal} setShow={setShowIncreaseModal} />
 
-            <DecreaseModal method={methods} show={decreaseModal} setShow={setShowDecreaseModal} />
+            <DecreaseModal show={decreaseModal} setShow={setShowDecreaseModal} />
         </>
     );
 };

@@ -37,7 +37,7 @@ const Header = () => {
 
         const authKey = sha1(
             process.env.NEXT_PUBLIC_AUTH_KEY +
-                `action=balance&remote_id=https://demo.urgentgames.com/_${getUserId.ID}&token=${process.env.NEXT_PUBLIC_TOKEN}&currency=${currancy.title}&casino=${process.env.NEXT_PUBLIC_CASINO}`
+            `action=balance&remote_id=https://demo.urgentgames.com/_${getUserId.ID}&token=${process.env.NEXT_PUBLIC_TOKEN}&currency=${currancy.title}&casino=${process.env.NEXT_PUBLIC_CASINO}`
         );
         try {
             const getTotalBlance = async () => {
@@ -46,6 +46,9 @@ const Header = () => {
                         `https://api.agere.games/casinos-admin/api?action=balance&remote_id=https://demo.urgentgames.com/_${getUserId.ID}&token=${process.env.NEXT_PUBLIC_TOKEN}&currency=${currancy.title}&casino=${process.env.NEXT_PUBLIC_CASINO}&authKey=${authKey}`
                     )
                     .then((response) => {
+                        if(response?.data.balance){
+                            localStorage.setItem("totalbalance", JSON.stringify(response.data));
+                        }
                         setTotalBalance(
                             Number(response?.data.balance).toLocaleString("en-US", {
                                 style: "currency",
@@ -64,7 +67,7 @@ const Header = () => {
             };
             getTotalBlance();
         } catch (error) {
-            console.log(error);
+            console.log(error); 
         }
     }, []);
 
@@ -105,9 +108,9 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" onClick={(e) => e.preventDefault()}>
+                                <a href="#" onClick={(e) => e.preventDefault()}>
                                     <i className="fas fa-headset"></i>
-                                </Link>
+                                </a>
                                 <ul>
                                     <li>
                                         <Link
@@ -122,10 +125,10 @@ const Header = () => {
                                 </ul>
                             </li>
                             <li>
-                                <Link href="#" onClick={(e) => e.preventDefault()}>
+                                <a href="#" onClick={(e) => e.preventDefault()}>
                                     <i className="fal fa-user"></i>
                                     <span>{admin?.display_name}</span>
-                                </Link>
+                                </a>
                                 <ul>
                                     <li>
                                         <Link

@@ -96,7 +96,11 @@ const Login = () => {
                                             />
                                         </div>
 
-                                        {error && <div className="error-msg">{error}</div>}
+                                        {error && (
+                                            <div className="error-msg" style={{ display: error && "block" }}>
+                                                {error}
+                                            </div>
+                                        )}
 
                                         <div className="form_submit">
                                             <button type="submit" name="login" className="sec_btn sm_btn">
