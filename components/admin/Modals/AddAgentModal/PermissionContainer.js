@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller } from "react-hook-form";
-import CheckboxGroup from "../../UI/CheckboxGroup";
+import CheckBoxGroup from "../../UI/CheckBoxGroup";
 
 const PermissionContainer = ({ methods }) => {
     const { control } = methods;
@@ -12,7 +12,7 @@ const PermissionContainer = ({ methods }) => {
                 control={control}
                 rules={{ required: true }}
                 render={({ field: { onChange, value } }) => (
-                    <CheckboxGroup name="permissions" methods={methods} />
+                    <CheckBoxGroup name="permissions" methods={methods} />
                 )}
             />
         </>

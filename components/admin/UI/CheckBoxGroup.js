@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CheckboxGroup = (props) => {
+const CheckBoxGroup = (props) => {
     const [checked, setChecked] = useState([]);
     const checkList = ["Sports", "Casino", "Poker"];
 
@@ -32,4 +32,4 @@ const CheckboxGroup = (props) => {
     );
 };
 
-export default CheckboxGroup;
+export default CheckBoxGroup;
